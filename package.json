@@ -1,0 +1,72 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/aws-sdk": "^2.7.0",
+    "@types/cls-hooked": "^4.3.0",
+    "@types/graphql": "^14.5.0",
+    "@types/knex": "^0.16.1",
+    "@types/node": "^12.7.12",
+    "@types/request-promise": "^4.1.45",
+    "@types/winston": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-json": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "husky": ">=1",
+    "lint-staged": ">=8",
+    "nodemon": "^1.19.3",
+    "prettier": "^1.19.1",
+    "typescript": "^3.6.4"
+  },
+  "scripts": {
+    "dev": "./node_modules/nodemon/bin/nodemon.js",
+    "dev:start": "[ -f .env ] && export $(grep -v '^#' .env | xargs); yarn build && yarn start",
+    "start": "[ -f .env ] && export $(grep -v '^#' .env | xargs); node dist/index.js",
+    "build": "tsc -p tsconfig.json --incremental --tsBuildInfoFile ./.tsbuild/tsbuildinfo",
+    "build:clean": "rm -rf dist && tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "apollo-server": "^2.9.6",
+    "apollo-server-express": "^2.9.6",
+    "aws-sdk": "^2.549.0",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.10.1",
+    "cls-hooked": "^4.2.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "knex": "^0.20.2",
+    "moment": "^2.24.0",
+    "mysql": "^2.17.1",
+    "pg": "^7.18.2",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "routing-controllers": "^0.8.0",
+    "source-map-support": "^0.5.16",
+    "type-graphql": "^0.17.5",
+    "typedi": "^0.8.0",
+    "typeorm": "^0.2.19",
+    "winston": "^3.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
