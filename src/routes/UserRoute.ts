@@ -1,7 +1,6 @@
-import { Body, Get, JsonController, Param, Post } from 'routing-controllers';
+import { Body, Get, JsonController, Param, Post, QueryParam } from 'routing-controllers';
 import { Inject } from 'typedi';
 import { UserService } from '../services/UserService';
-
 @JsonController('/user')
 export class UserRoute {
   @Inject()
@@ -29,12 +28,13 @@ export class UserRoute {
     }
   }
 
-  @Get('/credits/:id')
-  async credits(@Param('id') id: string): Promise<any> {
+  @Get('/credits')
+  async credits(@QueryParam('id') id: string): Promise<any> {
     try {
-      await this.userService.getCredits(id);
+      var credits: number[] = await this.userService.getCredits(id);
       return {
         success: true,
+        credits: credits[0]
       };
     } catch (e) {
       return {

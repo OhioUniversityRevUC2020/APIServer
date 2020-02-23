@@ -40,7 +40,8 @@ export class UserService {
     const userCredits = this.knexService
       .knex('users')
       .select('credits')
-      .where('id', '=', userId);
+      .where('id', '=', userId)
+      .pluck('credits');
     return userCredits;
   }
 }

@@ -8,7 +8,6 @@ export class PluginService {
   private knexService!: KnexService;
 
   async getCredits(idArray: string[]) {
-    //const user_credits: User[] = [];
     try {
       const userWithZeroCredits = await this.knexService
         .knex('users')
@@ -22,5 +21,4 @@ export class PluginService {
     }
   }
 
-  async brokenBlocks()
 }
