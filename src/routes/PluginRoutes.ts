@@ -66,7 +66,7 @@ export class PluginRoute {
     };
 
     const options = {
-        keyFilename: '../../revolution-uc-2020-faba9db15e80.json',\
+        keyFilename: '../../revolution-uc-2020-faba9db15e80.json',
         projectId: 'revolution-uc-2020'
     };
     const bigqueryClient = new BigQuery(options);
