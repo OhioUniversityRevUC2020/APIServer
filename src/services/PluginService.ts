@@ -2,10 +2,6 @@ import { Service, Inject } from 'typedi';
 import { KnexService } from './KnexService';
 import request from 'request-promise';
 
-interface User {
-    user: string;
-    credits: number;
-}
 
 @Service()
 export class PluginService {
@@ -28,4 +24,8 @@ export class PluginService {
             }
         }
     }
+}
+
+function subtractCredits(){
+    
 }
