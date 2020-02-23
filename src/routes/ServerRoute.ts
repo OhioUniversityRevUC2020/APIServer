@@ -1,11 +1,11 @@
 import { JsonController, Body, Post, HeaderParam } from 'routing-controllers';
 import { Inject } from 'typedi';
-import { UserService } from '../services/UserService';
+import { ServerService } from '../services/ServerService';
 
 @JsonController('/server')
 export class ServerRoute {
     @Inject()
-    private userService!: UserService;
+    private userService!: ServerService;
     @Post('/create')
     async create(
         @Body()

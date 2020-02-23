@@ -22,6 +22,7 @@ export const up = async (knex: Knex): Promise<void> => {
   await knex.schema.createTable('users', table => {
     addPrimaryId(table);
     table.string('minecraftAccountId').notNullable();
+    table.decimal('credits').defaultTo(0).notNullable();
   });
 
   await knex.schema.createTable('servers', table => {

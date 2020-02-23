@@ -24,4 +24,9 @@ export class UserService {
       minecraftAccountId: mojangResponse.id,
     });
   }
+  async getCredits(userId: string){
+    const userCredits = this.knexService.knex('users')
+      .select("credits")
+      .where("id", "=", userId);
+  }
 }
