@@ -29,9 +29,9 @@
     "typescript": "^3.6.4"
   },
   "scripts": {
-    "dev": "./node_modules/nodemon/bin/nodemon.js",
-    "dev:start": "[ -f .env ] && export $(grep -v '^#' .env | xargs); yarn build && yarn start",
-    "start": "[ -f .env ] && export $(grep -v '^#' .env | xargs); node dist/index.js",
+    "dev": "node ./node_modules/nodemon/bin/nodemon.js",
+    "dev:start": "npm run build && npm run start",
+    "start": "node dist/index.js",
     "build": "tsc -p tsconfig.json --incremental --tsBuildInfoFile ./.tsbuild/tsbuildinfo",
     "build:clean": "rm -rf dist && tsc -p tsconfig.json",
     "deploy": "node deploy/deploy.js"
@@ -44,6 +44,7 @@
     "class-validator": "^0.10.1",
     "cls-hooked": "^4.2.2",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^14.5.8",
     "knex": "^0.20.2",

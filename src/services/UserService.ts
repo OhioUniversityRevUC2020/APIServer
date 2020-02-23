@@ -28,5 +28,6 @@ export class UserService {
     const userCredits = this.knexService.knex('users')
       .select("credits")
       .where("id", "=", userId);
+    return userCredits;
   }
 }
