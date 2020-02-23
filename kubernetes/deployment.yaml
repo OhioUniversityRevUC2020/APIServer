@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: api-server
-          image: gcr.io/revolution-uc-2020/api-server:1.0.1
+          image: gcr.io/revolution-uc-2020/api-server:d06db10aad7d739a1c7f
           ports:
             - containerPort: 80

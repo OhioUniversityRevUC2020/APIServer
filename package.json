@@ -33,7 +33,8 @@
     "dev:start": "[ -f .env ] && export $(grep -v '^#' .env | xargs); yarn build && yarn start",
     "start": "[ -f .env ] && export $(grep -v '^#' .env | xargs); node dist/index.js",
     "build": "tsc -p tsconfig.json --incremental --tsBuildInfoFile ./.tsbuild/tsbuildinfo",
-    "build:clean": "rm -rf dist && tsc -p tsconfig.json"
+    "build:clean": "rm -rf dist && tsc -p tsconfig.json",
+    "deploy": "node deploy/deploy.js"
   },
   "dependencies": {
     "apollo-server": "^2.9.6",
