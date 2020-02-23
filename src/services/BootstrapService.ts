@@ -5,6 +5,7 @@ import { Logger } from 'winston';
 import { InjectLogger } from '../logger/Logger';
 import { ExpressService } from './ExpressService';
 import { KnexService } from './KnexService';
+import { TokenDeductionService } from '../TokenDeductionService';
 
 export interface Bootstrap {
   bootstrap(): Promise<void>;
@@ -21,7 +22,7 @@ export class BootstrapService {
 
   async bootstrap(): Promise<void> {
     this.logger.info('Starting bootstrapping process');
-    const services: (new () => Bootstrap)[] = [KnexService, ExpressService];
+    const services: (new () => Bootstrap)[] = [KnexService, ExpressService, TokenDeductionService];
     for (const bootstrap of services) {
       await Container.get(bootstrap).bootstrap();
     }
