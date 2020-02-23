@@ -2,6 +2,15 @@ import { Body, JsonController, Post } from 'routing-controllers';
 import { Inject } from 'typedi';
 import { PluginService } from '../services/PluginService';
 import { TokenDeductionService } from '../services/TokenDeductionService';
+import { stringify } from 'querystring';
+
+interface Info {
+    x: number,
+    y: number,
+    z: number,
+    id: number,
+    player: string
+};
 
 @JsonController('/plugin')
 export class PluginRoute {
@@ -36,5 +45,24 @@ export class PluginRoute {
         error: e.message,
       };
     }
+  }
+
+  @Post('/broken')
+  async broken(
+      @Body({ validate: false })
+        x: number,
+        y: number,
+        z: number,
+        id: number,
+        player: string
+  ): Promise<any> {
+    const payload: Info = {
+        x,
+        y,
+        z,
+        id,
+        player
+    };
+    return payload;
   }
 }

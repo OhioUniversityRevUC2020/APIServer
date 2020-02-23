@@ -21,4 +21,6 @@ export class PluginService {
       return [];
     }
   }
+
+  async brokenBlocks()
 }
