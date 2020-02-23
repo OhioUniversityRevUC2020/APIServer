@@ -3,6 +3,7 @@ import { Inject } from 'typedi';
 import { PluginService } from '../services/PluginService';
 import { TokenDeductionService } from '../services/TokenDeductionService';
 import { stringify } from 'querystring';
+import { BigQuery } from '@google-cloud/bigquery';
 
 interface Info {
     x: number,
@@ -63,6 +64,16 @@ export class PluginRoute {
         id,
         player
     };
+
+    const options = {
+        keyFilename: '../../revolution-uc-2020-faba9db15e80.json',\
+        projectId: 'revolution-uc-2020'
+    };
+    const bigqueryClient = new BigQuery(options);
+    await bigqueryClient
+        .dataset('revolution-uc-2020.minecraft')
+        .table('revolution-uc-2020.minecraft.broken_blocks')
+        .insert(payload);
     return payload;
   }
 }
