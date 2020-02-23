@@ -8,7 +8,7 @@ const version = crypto.randomBytes(10).toString('hex');
 const DOCKER_IMAGE = `gcr.io/revolution-uc-2020/api-server:${version}`;
 
 const file = fs.readFileSync(__dirname + '/../kubernetes/deployment.yaml', 'utf8');
-fs.writeFileSync(__dirname + '/../kubernetes/deployment.yaml', file.replace(/gcr\.io\/revolution-uc-2020\/api-server:([0-9]+\.[0-9]+\.[0-9]+)/g, DOCKER_IMAGE));
+fs.writeFileSync(__dirname + '/../kubernetes/deployment.yaml', file.replace(/gcr\.io\/revolution-uc-2020\/api-server:([0-9a-f]+)/g, DOCKER_IMAGE));
 
 execSync(`docker build -t ${DOCKER_IMAGE} .`, {
   env: process.env,

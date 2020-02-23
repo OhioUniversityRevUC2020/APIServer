@@ -5,7 +5,7 @@ import { Logger } from 'winston';
 import { InjectLogger } from '../logger/Logger';
 import { ExpressService } from './ExpressService';
 import { KnexService } from './KnexService';
-import { TokenDeductionService } from '../TokenDeductionService';
+import { TokenDeductionService } from './TokenDeductionService';
 
 export interface Bootstrap {
   bootstrap(): Promise<void>;

@@ -1,8 +1,6 @@
-import { JsonController, Body, Post, HeaderParam } from 'routing-controllers';
+import { Body, Get, JsonController, Param, Post } from 'routing-controllers';
 import { Inject } from 'typedi';
 import { UserService } from '../services/UserService';
-import { Get } from 'routing-controllers';
-import { Param } from 'routing-controllers';
 
 @JsonController('/user')
 export class UserRoute {
@@ -32,19 +30,17 @@ export class UserRoute {
   }
 
   @Get('/credits/:id')
-  async credits(@Param("id") id: string):
-    Promise<any> {
-      try { await this.userService.getCredits(id);
+  async credits(@Param('id') id: string): Promise<any> {
+    try {
+      await this.userService.getCredits(id);
       return {
         success: true,
       };
-      } catch (e) {
-        return {
-          success: false,
-          error: e.message,
-        };
-      }
+    } catch (e) {
+      return {
+        success: false,
+        error: e.message,
+      };
+    }
   }
-
-
 }
