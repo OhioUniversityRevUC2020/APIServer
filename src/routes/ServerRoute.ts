@@ -10,8 +10,8 @@ export class ServerRoute {
     async create(
         @Body()
         body: {
-          name: string;
-          creatorId: string;
+            name: string;
+            creatorId: string;
         },
     ): Promise<any> {
         const { name, creatorId } = body;
@@ -43,12 +43,13 @@ export class ServerRoute {
                 success: true,
                 // TODO FOR SMART DANIEL
             };
-        } catch(e) {
+        } catch (e) {
             return {
                 success: false,
                 error: e.message,
             }
         }
     }
-   
+
+
 }
