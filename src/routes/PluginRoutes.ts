@@ -1,17 +1,16 @@
+import { BigQuery } from '@google-cloud/bigquery';
 import { Body, JsonController, Post } from 'routing-controllers';
 import { Inject } from 'typedi';
 import { PluginService } from '../services/PluginService';
 import { TokenDeductionService } from '../services/TokenDeductionService';
-import { stringify } from 'querystring';
-import { BigQuery } from '@google-cloud/bigquery';
 
 interface Info {
-    x: number,
-    y: number,
-    z: number,
-    id: number,
-    player: string
-};
+  x: number;
+  y: number;
+  z: number;
+  material: number;
+  player: string;
+}
 
 @JsonController('/plugin')
 export class PluginRoute {
@@ -49,31 +48,23 @@ export class PluginRoute {
   }
 
   @Post('/broken')
-  async broken(
-      @Body({ validate: false })
-        x: number,
-        y: number,
-        z: number,
-        id: number,
-        player: string
-  ): Promise<any> {
-    const payload: Info = {
-        x,
-        y,
-        z,
-        id,
-        player
-    };
+  async broken(@Body({ validate: false }) body: any): Promise<any> {
+    try {
+      const payload: Info = body;
 
-    const options = {
-        keyFilename: '../../revolution-uc-2020-faba9db15e80.json',
-        projectId: 'revolution-uc-2020'
-    };
-    const bigqueryClient = new BigQuery(options);
-    await bigqueryClient
-        .dataset('revolution-uc-2020.minecraft')
-        .table('revolution-uc-2020.minecraft.broken_blocks')
+      const options = {
+        keyFilename: __dirname + '/../../revolution-uc-2020-8bbcae2f34a1.json',
+        projectId: 'revolution-uc-2020',
+      };
+      const bigqueryClient = new BigQuery(options);
+      await bigqueryClient
+        .dataset('minecraft')
+        .table('broken_blocks')
         .insert(payload);
-    return payload;
+      return payload;
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
   }
 }

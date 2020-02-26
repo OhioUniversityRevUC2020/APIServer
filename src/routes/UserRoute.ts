@@ -31,10 +31,10 @@ export class UserRoute {
   @Get('/credits')
   async credits(@QueryParam('id') id: string): Promise<any> {
     try {
-      var credits: number[] = await this.userService.getCredits(id);
+      const credits: number[] = await this.userService.getCredits(id);
       return {
         success: true,
-        credits: credits[0]
+        credits: credits[0],
       };
     } catch (e) {
       return {

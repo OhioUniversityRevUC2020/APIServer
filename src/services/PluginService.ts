@@ -7,7 +7,7 @@ export class PluginService {
   @Inject()
   private knexService!: KnexService;
 
-  async getCredits(idArray: string[]) {
+  async getCredits(idArray: string[]): Promise<Array<string>> {
     try {
       const userWithZeroCredits = await this.knexService
         .knex('users')
@@ -20,5 +20,4 @@ export class PluginService {
       return [];
     }
   }
-
 }

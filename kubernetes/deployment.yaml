@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: api-server
-          image: gcr.io/revolution-uc-2020/api-server:a79880be39614bb5c181
+          image: gcr.io/revolution-uc-2020/api-server:41497aab269836505ec6
           imagePullPolicy: Always
           ports:
             - containerPort: 80
